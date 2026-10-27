@@ -283,7 +283,7 @@ To run an agent prompt on a schedule, call your agent headless from cron, for ex
 | Auth | `tth auth login`, `tth auth status`, `tth auth logout` |
 | Accounts | `tth accounts list`, `tth credits show` |
 | Conversations | `tth conversations list`, `tth messages list`, `tth drafts write` |
-| Contacts | `tth contacts list`, `import`, `import-status`, `update`, `tth fields list`, `create`, `tth tags list`, `update`, `delete` |
+| Contacts | `tth contacts list`, `import`, `import-status`, `update`, `delete`, `tth fields list`, `create`, `tth tags list`, `update`, `delete` |
 | Companies | `tth companies list` |
 | Enrichment | `tth contacts enrich`, `find-email`, `find-phone` |
 | Views | `tth views list`, `create`, `update` |

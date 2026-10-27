@@ -30,6 +30,7 @@ The playbooks are shared with the TalkToHumans MCP. Translate each tool to its c
 | `list_contacts` | `tth contacts list` |
 | `import_contacts` / `get_import_progress` | `tth contacts import <urls…>` / `tth contacts import-status <import-id>` (both take `--wait`) |
 | `update_contact` | `tth contacts update <contact-id>` |
+| `delete_contacts` | `tth contacts delete <contact-id…>` |
 | `enrich_profile` | `tth contacts enrich` |
 | `find_email` / `find_phone` | `tth contacts find-email <contact-id>` / `find-phone <contact-id>` |
 | `list_companies` | `tth companies list` |
