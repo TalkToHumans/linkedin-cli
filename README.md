@@ -28,7 +28,7 @@ LinkedIn has no official CLI, and its public API doesn't give access to your pri
 
 | | Open-source scrapers | Cloud LinkedIn tools | TalkToHumans |
 |---|---|---|---|
-| Pace | Whatever pace your agent sets | Campaign volume | Conservative daily limits and human-paced delays, per action and per account |
+| Pace | Whatever pace your agent sets | Daily caps sized for campaigns | Human pace, enforced: daily limits plus a gap between every action, per LinkedIn account. Nobody can override them |
 | What 100 agent calls do | 100 trips to LinkedIn | 100 trips to LinkedIn, from their servers | Read a synced cache, so no more LinkedIn activity than one call |
 | Where LinkedIn actions run | A script driving a browser on your machine | Their servers, often behind proxy IPs | The browser you already use. No cloud automation, no proxy IP |
 | Where you work | In your terminal | In your terminal | Wherever suits the task: your terminal, the TalkToHumans app, or right inside LinkedIn and Sales Navigator |
@@ -36,8 +36,8 @@ LinkedIn has no official CLI, and its public API doesn't give access to your pri
 
 No LinkedIn tool is completely risk-free. Here is how TalkToHumans keeps the risk down:
 
-- **Human pace, built in.** Every action type has a conservative daily limit and a delay between actions, set per LinkedIn account and shared by everyone who uses it. Hit a limit and that action pauses until the next day. Your agent can't override it.
-- **Cache-based sync.** Your agent reads a synced copy of your LinkedIn data, not LinkedIn itself. Run 100 commands on your inbox and your account sees the same activity as one, with no hopping from profile to profile.
+- **Human pace, enforced.** Every action type has its own conservative daily limit and a slightly random gap between actions, so nothing goes out in bursts. Limits belong to the LinkedIn account, so every teammate and every agent shares them. Nobody can raise them, not even your agent.
+- **Cache-based sync.** Your agent reads a synced copy of your LinkedIn data, not LinkedIn itself. Run 100 commands on your inbox and your account sees the same activity as one, with no hopping from profile to profile. The background sync that fills that copy is paced the same way.
 - **Runs in your browser.** LinkedIn actions go through the browser you already use. No cloud automation, no proxy IPs and no virtual browsers acting on your behalf.
 - **Work in the terminal, the app or LinkedIn.** Everything your agent does also lands in the TalkToHumans app and in panels embedded in LinkedIn's own pages. Check conversations, see what's scheduled and take over by hand wherever you are.
 - **Drafts only.** `tth` can write a reply or stage a full follow-up sequence. No command sends a message: nothing goes out until you hit send.
