@@ -62,7 +62,7 @@ Your agent also gets work email and mobile phone for the people you talk to, fro
 
 ## Install and log in
 
-You need a TalkToHumans account on the Starter or Pro plan, with the TalkToHumans browser extension connected to LinkedIn. [Try it free](https://app.talktohumans.app/?auth=signup&utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli).
+You need a TalkToHumans account on any paid plan, from Starter, with the TalkToHumans browser extension connected to LinkedIn. [Try it free](https://app.talktohumans.app/?auth=signup&utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli).
 
 1. Install: `brew install talktohumans/tap/tth` on macOS and Linux, or download a binary from [Releases](https://github.com/TalkToHumans/linkedin-cli/releases/latest) (macOS, Linux and Windows, Intel and ARM).
 2. Log in: `tth auth login` shows a one-time code and opens TalkToHumans in your browser to confirm it.
@@ -318,7 +318,7 @@ Both reach the same workspace with the same safety rules and the same playbooks.
 | Context cost | Only the commands your agent runs, and `--help` when it needs it | Every tool definition, in every session |
 | Login | `tth auth login` in the browser, or an API key | OAuth when you add the connector |
 
-Many people use both: the MCP in their chat app, the CLI in their terminal.
+Many people use both: the MCP in their chat app, the CLI in their terminal. To connect Claude, ChatGPT or another chat app (Claude is one click), follow the [MCP setup guide](https://www.talktohumans.app/docs/developers/mcp).
 
 ## FAQ
 
