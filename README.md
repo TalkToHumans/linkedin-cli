@@ -38,6 +38,7 @@ No LinkedIn tool is completely risk-free. Here is how TalkToHumans keeps the ris
 
 - **Human pace, enforced.** Every action type has its own conservative daily limit and a slightly random gap between actions, so nothing goes out in bursts. Limits belong to the LinkedIn account, so every teammate and every agent shares them. Nobody can raise them, not even your agent.
 - **Cache-based sync.** Your agent reads a synced copy of your LinkedIn data, not LinkedIn itself. Run 100 commands on your inbox and your account sees the same activity as one, with no hopping from profile to profile. The background sync that fills that copy is paced the same way.
+- **Posts and searches skip your account.** Posts, comments, the people engaging with them and people searches come from a data provider, never from your LinkedIn session.
 - **Runs in your browser.** LinkedIn actions go through the browser you already use. No cloud automation, no proxy IPs and no virtual browsers acting on your behalf.
 - **Work in the terminal, the app or LinkedIn.** Everything your agent does also lands in the TalkToHumans app and in panels embedded in LinkedIn's own pages. Check conversations, see what's scheduled and take over by hand wherever you are.
 - **Drafts only.** `tth` can write a reply or stage a full follow-up sequence. No command sends a message: nothing goes out until you hit send.
@@ -51,7 +52,8 @@ Founders, consultants, sales teams and agencies use it for the same handful of j
 - **[Draft messages in your voice.](#draft-linkedin-messages-in-your-voice)** Your agent researches each person and writes a first message that sounds like you. You review every draft and send it yourself.
 - **[See what gets replies.](#analyze-your-linkedin-outbound-performance)** Analyze acceptance rates, reply rates and templates, from connection request to booked meeting.
 - **[Stage follow-up sequences.](#stage-linkedin-follow-up-sequences)** Follow-ups that stop when the lead replies, written for each person, waiting for you to launch them.
-- **[Import new leads.](#find-new-leads-online-and-import-them)** Find people showing intent online, or bring in a list from an event or Sales Navigator, and get a ready-to-work view.
+- **[Import new leads.](#find-new-leads-online-and-import-them)** Search LinkedIn by role, company or location, or bring in a list from an event or Sales Navigator, and get a ready-to-work view.
+- **[Mine post comments.](#find-leads-in-the-comments-of-linkedin-posts)** Find posts on a topic or by a competitor, and import the people who commented or reacted, each with a signal saying how.
 - **[Score and tag contacts.](#score-contacts-against-your-icp)** Fill an ICP score for every contact, or backfill tags on hundreds of conversations the way your team already uses them.
 - **[Keep your CRM in sync.](#log-linkedin-conversations-in-your-crm)** Combine it with your CRM's CLI or MCP to log LinkedIn conversations, or use the native HubSpot integration.
 - **[Script it.](#script-linkedin-with-tth)** Pipe JSON into `jq`, run a weekly report from cron, or wire LinkedIn into your own tools.
@@ -60,7 +62,7 @@ Your agent also gets work email and mobile phone for the people you talk to, fro
 
 ## Install and log in
 
-You need a TalkToHumans account on the Pro plan, with the TalkToHumans browser extension connected to LinkedIn. [Try it free](https://app.talktohumans.app/?auth=signup&utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli).
+You need a TalkToHumans account on the Starter or Pro plan, with the TalkToHumans browser extension connected to LinkedIn. [Try it free](https://app.talktohumans.app/?auth=signup&utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli).
 
 1. Install: `brew install talktohumans/tap/tth` on macOS and Linux, or download a binary from [Releases](https://github.com/TalkToHumans/linkedin-cli/releases/latest) (macOS, Linux and Windows, Intel and ARM).
 2. Log in: `tth auth login` shows a one-time code and opens TalkToHumans in your browser to confirm it.
@@ -185,22 +187,33 @@ I'll review and launch each sequence myself.
 
 ### Find new leads online and import them
 
-Pair `tth` with a web search tool such as [Parallel](https://parallel.ai) to find fresh leads every day.
+Your agent searches LinkedIn by job title, company, location or industry, 25 people a page, and imports the ones worth it. Each page uses 10 credits.
 
 ```txt
-Use Parallel Search to find 20 high-quality leads I should reach out to today
-for [BUSINESS NAME].
+Use the tth CLI to find people on LinkedIn who match my ICP:
+[DESCRIBE YOUR ICP: ROLE, COMPANY SIZE, INDUSTRY, LOCATION]
 
-My ICP is: [DESCRIBE YOUR ICP]
-
-Prioritize people who recently showed direct or indirect buying intent online:
-engaging with relevant topics, discussing a problem we solve, or interacting with competitors.
-
-Then:
-1. Remove duplicates and anyone already in TalkToHumans.
-2. Import the new leads with the tth CLI.
-3. Create a view for them so I can start working through them.
+Show me the 20 best fits and why, before importing anything.
+Once I confirm, import them, skip anyone already in TalkToHumans,
+and create a view for them so I can start working through them.
 ```
+
+### Find leads in the comments of LinkedIn posts
+
+People who comment on a post about your problem space are telling you what they care about. Your agent finds those posts and imports the people who commented or reacted. Importing engagers needs the Pro plan.
+
+```txt
+Use the tth CLI to find LinkedIn posts from the last month about [TOPIC],
+or that mention [COMPETITOR].
+
+Show me the 5 with the most comments. Import the ones I pick,
+tell me how many credits importing their engagers would cost, and wait for my OK.
+
+Then import the engagers and list the commenters whose headline matches my ICP:
+[DESCRIBE YOUR ICP]
+```
+
+To watch a competitor's or an influencer's posts every day, ask your agent to track their content. It keeps using credits until you stop it, so your agent asks you first.
 
 ### Import a LinkedIn lead list you already have
 
@@ -209,7 +222,7 @@ Got a list from an event, a webinar, a Sales Navigator search or another tool? `
 ```txt
 Use the tth CLI to import the people from leads.csv (LinkedIn URL column).
 
-Skip anyone already in TalkToHumans, tag them "[TAG NAME]", and create a view for them.
+Skip anyone already in TalkToHumans, add a signal saying where they come from, and create a view for them.
 Then draft a first message for each one that mentions [WHERE THEY COME FROM, E.G. THE EVENT].
 ```
 
@@ -283,8 +296,9 @@ To run an agent prompt on a schedule, call your agent headless from cron, for ex
 | Auth | `tth auth login`, `tth auth status`, `tth auth logout` |
 | Accounts | `tth accounts list`, `tth credits show` |
 | Conversations | `tth conversations list`, `tth messages list`, `tth drafts write` |
-| Contacts | `tth contacts list`, `import`, `import-status`, `update`, `delete`, `tth fields list`, `create`, `tth tags list`, `update`, `delete` |
+| Contacts | `tth contacts list`, `import`, `import-status`, `update`, `delete`, `tth people search`, `tth signals create`, `tth fields list`, `create`, `tth tags list`, `update`, `delete` |
 | Companies | `tth companies list` |
+| Content | `tth content list`, `search`, `find`, `import`, `import-engagers`, `track`, `update` |
 | Enrichment | `tth contacts enrich`, `find-email`, `find-phone` |
 | Views | `tth views list`, `create`, `update` |
 | Templates & sequences | `tth templates list`, `create`, `update`, `tth sequences update`, `delete` |
@@ -292,7 +306,7 @@ To run an agent prompt on a schedule, call your agent headless from cron, for ex
 | Agents | `tth skill`, `tth skills list`, `tth skills show`, `tth feedback send` |
 | Anything else | `tth api <METHOD> /v1/...` |
 
-`tth drafts write` saves a draft or stages a sequence for you to review. It never sends. Imports and enrichment use TalkToHumans credits.
+`tth drafts write` saves a draft or stages a sequence for you to review. It never sends. Imports, searches, enrichment and tracking use TalkToHumans credits.
 
 ## LinkedIn CLI or LinkedIn MCP?
 
@@ -334,7 +348,7 @@ Your workspace syncs while your browser is open with the TalkToHumans extension 
 
 ### Which plan includes the CLI?
 
-The CLI, the MCP and the API come with the [Pro plan](https://www.talktohumans.app/pricing?utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli), alongside sequences, analytics and CRM integrations.
+The CLI, the MCP and the API come with every paid plan, from [Starter](https://www.talktohumans.app/pricing?utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli). Pro adds sequences, post engagers, analytics and CRM integrations.
 
 ## About this repository
 

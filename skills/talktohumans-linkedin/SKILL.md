@@ -1,6 +1,6 @@
 ---
 name: talktohumans-linkedin
-description: Use the tth CLI (TalkToHumans LinkedIn CLI) to work with the user's LinkedIn from the terminal - prospecting, finding and filtering contacts and companies, importing and enriching profiles, reading DMs and conversations, tagging, writing message drafts and sequences the user reviews and sends, and LinkedIn activity reports.
+description: Use the tth CLI (TalkToHumans LinkedIn CLI) to work with the user's LinkedIn from the terminal - prospecting, finding and filtering contacts and companies, searching LinkedIn for new leads and posts, importing and enriching profiles, importing post engagers, pushing signals, reading DMs and conversations, tagging, writing message drafts and sequences the user reviews and sends, and LinkedIn activity reports.
 ---
 
 # TalkToHumans LinkedIn CLI (`tth`)
@@ -28,12 +28,19 @@ The playbooks are shared with the TalkToHumans MCP. Translate each tool to its c
 | `list_accounts` | `tth accounts list` |
 | `get_credit_balance` | `tth credits show` |
 | `list_contacts` | `tth contacts list` |
-| `import_contacts` / `get_import_progress` | `tth contacts import <urls…>` / `tth contacts import-status <import-id>` (both take `--wait`) |
+| `import_contacts` / `get_import_progress` | `tth contacts import <urls…>` / `tth contacts import-status <import-id>` (both take `--wait`; engager imports too) |
 | `update_contact` | `tth contacts update <contact-id>` |
 | `delete_contacts` | `tth contacts delete <contact-id…>` |
 | `enrich_profile` | `tth contacts enrich` |
 | `find_email` / `find_phone` | `tth contacts find-email <contact-id>` / `find-phone <contact-id>` |
 | `list_companies` | `tth companies list` |
+| `search_people` | `tth people search` |
+| `list_content` / `update_content` | `tth content list` / `update <content-id>` |
+| `import_content` / `import_content_engagers` | `tth content import <urls…>` / `tth content import-engagers` |
+| `find_content` | `tth content find <contact-id>` |
+| `track_content` | `tth content track <contact-id>` |
+| `search_posts` | `tth content search` |
+| `create_signals` | `tth signals create --signals <file>` (a JSON array, `-` for stdin) |
 | `list_field_definitions` / `create_field_definition` | `tth fields list` / `create` |
 | `list_tags` / `update_tag` / `delete_tag` | `tth tags list` / `update <tag-id>` / `delete <tag-id>` |
 | `list_conversations` | `tth conversations list` |
@@ -54,7 +61,7 @@ Any other `/v1` route: `tth api <METHOD> /v1/... [--field k=v] [--input file] [-
 - stderr carries warnings and errors. Errors are JSON when piped: `{"code","message","hint"}`. Read sync and caveat warnings and tell the user when data may be incomplete.
 - Exit codes: `0` ok, `1` error, `2` usage (fix the command), `3` not found, `4` auth, plan or setup, `5` rate limited.
 - `tth tags delete` and `tth sequences delete` need `--yes` without a terminal: pass it only when the user named that tag or sequence, or agreed.
-- Imports, enrichment and email or phone lookups use credits and don't ask.
+- Imports, enrichment, email or phone lookups, content lookups and searches use credits and don't ask. Searches have no `--all`: each `--cursor` page costs credits again.
 
 ## Rules
 
