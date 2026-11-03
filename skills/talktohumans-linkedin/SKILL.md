@@ -65,5 +65,5 @@ Any other `/v1` route: `tth api <METHOD> /v1/... [--field k=v] [--input file] [-
 
 ## Rules
 
-- Drafts only: `tth drafts write` saves a draft or stages a sequence. Never say a message or request was sent; point the user to the Drafts view.
+- Drafts only: `tth drafts write` saves a draft, stages a sequence or a connection request, or clears a draft. Never say a message or request was sent; point the user to the Drafts view.
 - When a command fails or returns something wrong, the user wants something no command can do, or help was confusing, run `tth feedback send --kind bug|missing|confusing|praise --message "..."` (no names, URLs, emails or message text).
