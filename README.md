@@ -284,7 +284,7 @@ tth conversations list --account-id 42 \
 tth contacts import --account-id 42 --file leads.txt --wait
 
 # Last week's reply and acceptance rates
-tth activity summary --from 2026-10-19 --to 2026-10-26 --json | jq '.data'
+tth activity summary --from 2026-10-19 --to 2026-10-25 --json | jq '.data'
 ```
 
 To run an agent prompt on a schedule, call your agent headless from cron, for example `claude -p "Find the LinkedIn replies I owe and draft them"` every weekday at 8:00 with `TTH_API_KEY` set. Any `/v1` route of the [TalkToHumans API](https://www.talktohumans.app/docs/developers/overview) is one command away with `tth api GET /v1/...`.
