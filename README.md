@@ -123,7 +123,7 @@ tth drafts write --help
 | Agents | `tth skill`, `tth skills list`, `tth skills show`, `tth feedback send` |
 | Anything else | `tth api <METHOD> /v1/...` |
 
-`tth drafts write` saves a draft or stages a sequence for you to review. It never sends. Imports, searches, enrichment and tracking use TalkToHumans credits.
+`tth drafts write` saves a draft or stages a sequence for you to review. It never sends. Imports, searches, enrichment and tracking use TalkToHumans credits. `tth accounts list --json` also gives your agent your own LinkedIn profile, for free, so it knows who you are.
 
 ## LinkedIn CLI or LinkedIn MCP?
 
