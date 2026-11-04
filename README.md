@@ -11,16 +11,8 @@ Your agent reads your LinkedIn conversations, searches your network, enriches pr
 [![Website](https://img.shields.io/badge/Website-talktohumans.app-blue)](https://www.talktohumans.app/?utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli)
 [![Docs](https://img.shields.io/badge/Docs-CLI%20setup-green)](https://www.talktohumans.app/docs/developers/cli)
 [![Release](https://img.shields.io/github/v/release/TalkToHumans/linkedin-cli?label=Release)](https://github.com/TalkToHumans/linkedin-cli/releases/latest)
-[![Agent skill](https://img.shields.io/badge/Agent%20skill-npx%20skills%20add-purple)](#for-ai-agents)
+[![Agent skill](https://img.shields.io/badge/Agent%20skill-npx%20skills%20add-purple)](#set-up-your-ai-agent)
 [![Platforms](https://img.shields.io/badge/Platforms-macOS%20%7C%20Linux%20%7C%20Windows-black)](https://github.com/TalkToHumans/linkedin-cli/releases/latest)
-
-```bash
-brew install talktohumans/tap/tth
-tth auth login
-tth contacts list --query "Acme"
-```
-
-No Homebrew, or on Windows? Download the archive for your system from the [latest release](https://github.com/TalkToHumans/linkedin-cli/releases/latest) and put `tth` on your `PATH`.
 
 ## Why this LinkedIn CLI is safer
 
@@ -45,249 +37,83 @@ No LinkedIn tool is completely risk-free. Here is how TalkToHumans keeps the ris
 
 ## What your agent can do on LinkedIn
 
-Founders, consultants, sales teams and agencies use it for the same handful of jobs. Each one has a ready-to-paste prompt [further down](#linkedin-cli-use-cases-and-prompts).
+Founders, consultants, sales teams and agencies use it for the same handful of jobs:
 
-- **[Find leads in your network.](#find-leads-in-your-linkedin-network)** Describe your ideal customer, and your agent scores your connections. They're already connected to you, so you can message them today.
-- **[Find the replies you owe.](#find-the-linkedin-replies-you-owe)** Scan hundreds of LinkedIn, Sales Navigator and Recruiter threads for the ones where someone is waiting on you, every morning if you like.
-- **[Draft messages in your voice.](#draft-linkedin-messages-in-your-voice)** Your agent researches each person and writes a first message that sounds like you. You review every draft and send it yourself.
-- **[See what gets replies.](#analyze-your-linkedin-outbound-performance)** Analyze acceptance rates, reply rates and templates, from connection request to booked meeting.
-- **[Stage follow-up sequences.](#stage-linkedin-follow-up-sequences)** Follow-ups that stop when the lead replies, written for each person, waiting for you to launch them.
-- **[Import new leads.](#find-new-leads-online-and-import-them)** Search LinkedIn by role, company or location, or bring in a list from an event or Sales Navigator, and get a ready-to-work view.
-- **[Mine post comments.](#find-leads-in-the-comments-of-linkedin-posts)** Find posts on a topic or by a competitor, and import the people who commented or reacted, each with a signal saying how.
-- **[Score and tag contacts.](#score-contacts-against-your-icp)** Fill an ICP score for every contact, or backfill tags on hundreds of conversations the way your team already uses them.
-- **[Keep your CRM in sync.](#log-linkedin-conversations-in-your-crm)** Combine it with your CRM's CLI or MCP to log LinkedIn conversations, or use the native HubSpot integration.
-- **[Script it.](#script-linkedin-with-tth)** Pipe JSON into `jq`, run a weekly report from cron, or wire LinkedIn into your own tools.
+- **Find leads in your network.** Describe your ideal customer, and your agent scores your connections. They're already connected to you, so you can message them today.
+- **Find the replies you owe.** Scan hundreds of LinkedIn, Sales Navigator and Recruiter threads for the ones where someone is waiting on you, every morning if you like.
+- **Draft messages in your voice.** Your agent researches each person and writes a first message that sounds like you. You review every draft and send it yourself.
+- **See what gets replies.** Analyze acceptance rates, reply rates and templates, from connection request to booked meeting.
+- **Stage follow-up sequences.** Follow-ups that stop when the lead replies, written for each person, waiting for you to launch them.
+- **Import new leads.** Search LinkedIn by role, company or location, or bring in a list from an event or Sales Navigator, and get a ready-to-work view.
+- **Mine post comments.** Find posts on a topic or by a competitor, and import the people who commented or reacted, each with a signal saying how.
+- **Score and tag contacts.** Fill an ICP score for every contact, or backfill tags on hundreds of conversations the way your team already uses them.
+- **Keep your CRM in sync.** Combine it with your CRM's CLI or MCP to log LinkedIn conversations, or use the native HubSpot integration.
+- **Script it.** Pipe JSON into `jq`, run a weekly report from cron, or wire LinkedIn into your own tools.
 
 Your agent also gets work email and mobile phone for the people you talk to, from 20+ providers in a waterfall.
 
-## Install and log in
+## Quickstart
 
 You need a TalkToHumans account on any paid plan, from Starter, with the TalkToHumans browser extension connected to LinkedIn. [Try it free](https://app.talktohumans.app/?auth=signup&utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli).
 
-1. Install: `brew install talktohumans/tap/tth` on macOS and Linux, or download a binary from [Releases](https://github.com/TalkToHumans/linkedin-cli/releases/latest) (macOS, Linux and Windows, Intel and ARM).
-2. Log in: `tth auth login` shows a one-time code and opens TalkToHumans in your browser to confirm it.
-3. Check: `tth auth status` shows your workspace, and `tth accounts list` your connected LinkedIn accounts.
-
-Scripts and cron jobs have no one to confirm in a browser: give them an API key with `TTH_API_KEY` (a workspace admin creates it in TalkToHumans Settings).
-
 ```bash
-export TTH_API_KEY=sk_...
-tth credits show
+# Install (macOS and Linux)
+brew install talktohumans/tap/tth
+
+# Sign in (opens a browser)
+tth auth login
+
+# List your contacts
+tth contacts list --query "Acme"
 ```
 
-## For AI agents
+On Windows or without Homebrew, download `tth` from the [latest release](https://github.com/TalkToHumans/linkedin-cli/releases/latest) and put it on your `PATH`.
 
-Install the skill once. It teaches your agent when to use `tth`, how its output works and where the playbooks are:
+Scripts and cron jobs sign in with an API key instead: set `TTH_API_KEY` to a key a workspace admin creates in TalkToHumans Settings.
+
+## Set up your AI agent
+
+Install the agent skill once:
 
 ```bash
 tth skill --install
 ```
 
-That writes it to `~/.claude/skills/` (Claude Code) and `~/.agents/skills/` (Codex and other agents). You can also install it from this repo with any skills installer:
+Or with any skills installer: `npx skills add TalkToHumans/linkedin-cli`
+
+## Common commands
 
 ```bash
-npx skills add TalkToHumans/linkedin-cli
+# Conversations where you owe a reply
+tth conversations list --account-id 42 --filters '[{"field":"conversation.reply_state","operator":"=","value":"waiting_for_my_reply"}]'
+
+# Import profiles and wait for the result
+tth contacts import --account-id 42 --file leads.txt --wait
+
+# Enrich and tag a contact
+tth contacts enrich --contact-id 123
+tth contacts update 123 --tag "Hot lead"
+
+# Draft a message (never sent)
+tth drafts write --account-id 42 --contact-id 123 --draft-message "Hi Ada, ..."
+
+# Last week's performance
+tth activity summary --from 2026-10-19 --to 2026-10-25
 ```
+
+Every command supports `--help`, starting with real examples:
 
 ```bash
-gh skill install TalkToHumans/linkedin-cli talktohumans-linkedin --scope user
+tth contacts --help
+tth drafts write --help
 ```
 
-Then ask in plain words, like the prompts below. Your agent:
-
-1. Runs `tth skills show ground-rules` and follows it for every task.
-2. Picks the playbook that matches your request from `tth skills list` (reply triage, list imports, ICP scoring, weekly reports and more). They're the same playbooks as the [LinkedIn MCP](https://github.com/TalkToHumans/linkedin-mcp), served by the API, so they stay current without updating the CLI.
-3. Reads `tth <command> --help` before a command it hasn't used. Every help page starts with real examples.
-
-What the agent can rely on:
+Output is made for agents and scripts:
 
 - **stdout is data only.** JSON when piped, a table in a terminal, `--json` to force JSON. `--all` follows pagination and prints one JSON array.
 - **stderr carries warnings and errors.** Errors are JSON when piped: `{"code","message","hint"}`.
 - **Exit codes:** `0` ok, `1` error, `2` usage, `3` not found, `4` auth, plan or setup, `5` rate limited.
 - **No prompts without a terminal.** Deleting a tag or a sequence needs `--yes` when there is no one to ask.
-
-## LinkedIn CLI use cases and prompts
-
-Replace the parts in `[brackets]`. Each prompt works in Claude Code, Codex, Cursor or any agent with a terminal once `tth` is logged in and the skill installed. They're ordered from the ones people run most.
-
-### Find leads in your LinkedIn network
-
-At least 10–20 people in your network probably already fit your ICP, and you can message them without a connection request.
-
-```txt
-Use the tth CLI to find up to 20 leads in my LinkedIn network
-I should reach out to today for [BUSINESS NAME].
-
-My ICP is: [DESCRIBE YOUR ICP]
-
-Then create a view in TalkToHumans with those 20 leads so I can work through them today.
-```
-
-To find intro paths instead, ask for people who could introduce you to your ICP, why each one is relevant, and a draft of the intro ask.
-
-### Find the LinkedIn replies you owe
-
-Leads rarely go cold because they said no. They go cold because nobody answered.
-
-```txt
-Use the tth CLI to go through my LinkedIn conversations.
-List every thread where the other person wrote last and I haven't answered,
-most important first. Draft a reply for each one. Don't send anything.
-```
-
-Run it every morning for a LinkedIn inbox brief (see [Script LinkedIn with tth](#script-linkedin-with-tth)). Your agent reads the inbox synced by the TalkToHumans extension, so keep LinkedIn open in your browser for the latest messages.
-
-### Draft LinkedIn messages in your voice
-
-A good first message is the hardest part. Your agent gets you past the blank page, and every draft waits in TalkToHumans until you review and send it.
-
-```txt
-Use the tth CLI and open the contacts in this view:
-[LINK TO THE CONTACT VIEW IN TALKTOHUMANS]
-
-Draft a first message for each of them.
-
-Rules:
-- Max 3 sentences.
-- No pitch in the first message. Open a real conversation.
-- Use their profile or our past conversation to show you know something
-  true and specific about their world. No fake flattery.
-- Match their tone, based on how they write or how their profile reads.
-- Ask yourself: "Would I reply to this if I were them?" If not, rewrite it.
-- Review your output with https://github.com/hardikpandya/stop-slop/blob/main/SKILL.md
-
-I'll review each message before sending.
-```
-
-### Analyze your LinkedIn outbound performance
-
-```txt
-Use the tth CLI to analyze my LinkedIn outbound performance over the past 2 weeks.
-Work out what tends to work and what doesn't, from accepted connection request
-to booked meeting. Then tell me what to change, improve or stop doing for the next 2 weeks.
-
-Add charts where they make the analysis easier to read.
-```
-
-### Stage LinkedIn follow-up sequences
-
-Most replies come from the follow-up, and writing three of them for every lead is where most people give up. Your agent stages each [sequence](https://www.talktohumans.app/docs/product/messaging/sequences) as a draft. It stops as soon as the lead replies, and nothing starts until you launch it.
-
-```txt
-Use the tth CLI to find the contacts who accepted my connection request
-in the last 30 days but never replied.
-
-For each one, stage a 2-step follow-up sequence as a draft:
-- Day 3: a short follow-up that adds one useful, specific thing for them
-- Day 10: a light last nudge
-
-Same rules as a first message: short, no pitch, specific to them.
-I'll review and launch each sequence myself.
-```
-
-### Find new leads online and import them
-
-Your agent searches LinkedIn by job title, company, location or industry, 25 people a page, and imports the ones worth it. Each page uses 10 credits.
-
-```txt
-Use the tth CLI to find people on LinkedIn who match my ICP:
-[DESCRIBE YOUR ICP: ROLE, COMPANY SIZE, INDUSTRY, LOCATION]
-
-Show me the 20 best fits and why, before importing anything.
-Once I confirm, import them, skip anyone already in TalkToHumans,
-and create a view for them so I can start working through them.
-```
-
-### Find leads in the comments of LinkedIn posts
-
-People who comment on a post about your problem space are telling you what they care about. Your agent finds those posts and imports the people who commented or reacted. Importing engagers needs the Pro plan.
-
-```txt
-Use the tth CLI to find LinkedIn posts from the last month about [TOPIC],
-or that mention [COMPETITOR].
-
-Show me the 5 with the most comments. Import the ones I pick,
-tell me how many credits importing their engagers would cost, and wait for my OK.
-
-Then import the engagers and list the commenters whose headline matches my ICP:
-[DESCRIBE YOUR ICP]
-```
-
-To watch a competitor's or an influencer's posts every day, ask your agent to track their content. It keeps using credits until you stop it, so your agent asks you first.
-
-### Import a LinkedIn lead list you already have
-
-Got a list from an event, a webinar, a Sales Navigator search or another tool? `tth contacts import` takes up to 500 LinkedIn profile URLs at a time, as arguments, from a file or from stdin.
-
-```txt
-Use the tth CLI to import the people from leads.csv (LinkedIn URL column).
-
-Skip anyone already in TalkToHumans, add a signal saying where they come from, and create a view for them.
-Then draft a first message for each one that mentions [WHERE THEY COME FROM, E.G. THE EVENT].
-```
-
-### Score contacts against your ICP
-
-Your agent stores the score in an "ICP score" [custom field](https://www.talktohumans.app/docs/product/contacts/custom-fields), so you can sort and filter your contacts by it.
-
-```txt
-Use the tth CLI and open the contacts in this view:
-[LINK TO THE CONTACT VIEW IN TALKTOHUMANS]
-
-If a contact custom field named "ICP score" doesn't exist yet, create it.
-Then analyze each contact one by one and fill in their ICP score.
-
-Our ICP is: [DESCRIBE YOUR ICP]
-
-Use web search and their company website to be more accurate.
-```
-
-### Tag LinkedIn contacts and conversations automatically
-
-Tags work well when you're working through new conversations. To backfill hundreds of old ones, hand it to your agent. Keep tags few and simple, like "Hot lead", "Friend", "Candidate", "Investor" or "Spam": a contact with no tag is better than a wrong one.
-
-```txt
-Use the tth CLI. First, look at our existing tags and how we use them.
-Then tag every lead that has no tags, using those existing tags,
-based on our conversations and what you know about the contact and their company.
-
-Rules:
-- Reuse existing tags. Only create a new one if none fits, and keep the list short.
-- Tags are 1-2 words in plain English, like "Hot lead", "Friend", "Candidate", "Investor", "Spam".
-- One tag per contact is usually enough.
-- If you're unsure, don't tag the contact.
-```
-
-### Log LinkedIn conversations in your CRM
-
-Using HubSpot? The [native integration](https://www.talktohumans.app/docs/hubspot) on the Pro plan already syncs it. For any other CRM with a CLI or an MCP server, such as Attio or Twenty, your agent can do it:
-
-```txt
-Use the tth CLI and my CRM's CLI or MCP.
-For every LinkedIn conversation with a new message in the last 7 days:
-1. Find the matching person in my CRM, or create them if they're missing.
-2. Add a two-line summary of the conversation as a note.
-3. If their work email is missing in my CRM, find it with the tth CLI.
-```
-
-### Script LinkedIn with tth
-
-Everything above also works without an agent in the loop. `tth` prints JSON when piped, so it fits in `jq`, shell scripts and cron jobs.
-
-```bash
-# How many replies do I owe?
-tth conversations list --account-id 42 \
-  --filters '[{"field":"conversation.reply_state","operator":"=","value":"waiting_for_my_reply"}]' \
-  --all | jq length
-
-# Import a list of profile URLs and wait for the import to finish
-tth contacts import --account-id 42 --file leads.txt --wait
-
-# Last week's reply and acceptance rates
-tth activity summary --from 2026-10-19 --to 2026-10-25 --json | jq '.data'
-```
-
-To run an agent prompt on a schedule, call your agent headless from cron, for example `claude -p "Find the LinkedIn replies I owe and draft them"` every weekday at 8:00 with `TTH_API_KEY` set. Any `/v1` route of the [TalkToHumans API](https://www.talktohumans.app/docs/developers/overview) is one command away with `tth api GET /v1/...`.
 
 ## LinkedIn CLI commands
 
