@@ -106,13 +106,6 @@ tth contacts --help
 tth drafts write --help
 ```
 
-Output is made for agents and scripts:
-
-- **stdout is data only.** JSON when piped, a table in a terminal, `--json` to force JSON. `--all` follows pagination and prints one JSON array.
-- **stderr carries warnings and errors.** Errors are JSON when piped: `{"code","message","hint"}`.
-- **Exit codes:** `0` ok, `1` error, `2` usage, `3` not found, `4` auth, plan or setup, `5` rate limited.
-- **No prompts without a terminal.** Deleting a tag or a sequence needs `--yes` when there is no one to ask.
-
 ## LinkedIn CLI commands
 
 | Area | Commands |
