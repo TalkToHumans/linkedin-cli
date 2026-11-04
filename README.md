@@ -54,8 +54,6 @@ Your agent also gets work email and mobile phone for the people you talk to, fro
 
 ## Quickstart
 
-You need a TalkToHumans account on any paid plan, from Starter, with the TalkToHumans browser extension connected to LinkedIn. [Try it free](https://app.talktohumans.app/?auth=signup&utm_source=github&utm_medium=readme&utm_campaign=linkedin-cli).
-
 ```bash
 # Install (macOS and Linux)
 brew install talktohumans/tap/tth
