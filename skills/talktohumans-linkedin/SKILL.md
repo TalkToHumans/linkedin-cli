@@ -46,6 +46,7 @@ The playbooks are shared with the TalkToHumans MCP. Translate each tool to its c
 | `list_conversations` | `tth conversations list` |
 | `list_messages` | `tth messages list <conversation-id>` |
 | `write_message_draft` | `tth drafts write` |
+| `upload_file` | `tth files upload <path>` or `--url <link>`; attach with `tth drafts write --attachment <file-id>` |
 | `update_sequence` / `delete_sequence` | `tth sequences update <sequence-id>` / `delete <sequence-id>` |
 | `list_templates` / `create_template` / `update_template` | `tth templates list` / `create` / `update <template-id>` |
 | `list_views` / `create_view` / `update_view` | `tth views list` / `create` / `update <view-id>` |

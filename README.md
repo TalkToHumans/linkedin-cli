@@ -112,7 +112,7 @@ tth drafts write --help
 |---|---|
 | Auth | `tth auth login`, `tth auth status`, `tth auth logout` |
 | Accounts | `tth accounts list`, `tth credits show` |
-| Conversations | `tth conversations list`, `tth messages list`, `tth drafts write` |
+| Conversations | `tth conversations list`, `tth messages list`, `tth drafts write`, `tth files upload` |
 | Contacts | `tth contacts list`, `import`, `import-status`, `update`, `delete`, `tth people search`, `tth signals create`, `tth fields list`, `create`, `tth tags list`, `update`, `delete` |
 | Companies | `tth companies list` |
 | Content | `tth content list`, `search`, `find`, `import`, `import-engagers`, `track`, `update` |
