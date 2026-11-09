@@ -117,7 +117,7 @@ tth drafts write --help
 | Companies | `tth companies list` |
 | Content | `tth content list`, `search`, `find`, `import`, `import-engagers`, `track`, `update` |
 | Enrichment | `tth contacts enrich`, `find-email`, `find-phone` |
-| Views | `tth views list`, `create`, `update` |
+| Views | `tth views list`, `create`, `update`, `delete` |
 | Templates & sequences | `tth templates list`, `create`, `update`, `tth sequences update`, `delete` |
 | Reporting | `tth activity list`, `tth activity summary` |
 | Agents | `tth skill`, `tth skills list`, `tth skills show`, `tth feedback send` |

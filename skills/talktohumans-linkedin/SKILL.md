@@ -49,7 +49,7 @@ The playbooks are shared with the TalkToHumans MCP. Translate each tool to its c
 | `upload_file` | `tth files upload <path>` or `--url <link>`; attach with `tth drafts write --attachment <file-id>` |
 | `update_sequence` / `delete_sequence` | `tth sequences update <sequence-id>` / `delete <sequence-id>` |
 | `list_templates` / `create_template` / `update_template` | `tth templates list` / `create` / `update <template-id>` |
-| `list_views` / `create_view` / `update_view` | `tth views list` / `create` / `update <view-id>` |
+| `list_views` / `create_view` / `update_view` / `delete_view` | `tth views list` / `create` / `update <view-id>` / `delete <view-id>` |
 | `list_activity` / `get_activity_summary` | `tth activity list` / `summary` |
 | `load_skill` | `tth skills show <name>` |
 | `send_feedback` | `tth feedback send` |
@@ -61,7 +61,7 @@ Any other `/v1` route: `tth api <METHOD> /v1/... [--field k=v] [--input file] [-
 - stdout is data only: JSON when piped (always, for agents), a table in a terminal, `--json` forces JSON. A single page prints the API response unchanged (`data.pagination.next_cursor` → `--cursor`); `--all` prints the same shape with every page's items, so read `.data.<items>` either way.
 - stderr carries warnings and errors. Errors are JSON when piped: `{"code","message","hint"}`. Read sync and caveat warnings and tell the user when data may be incomplete.
 - Exit codes: `0` ok, `1` error, `2` usage (fix the command), `3` not found, `4` auth, plan or setup, `5` rate limited.
-- `tth tags delete` and `tth sequences delete` need `--yes` without a terminal: pass it only when the user named that tag or sequence, or agreed.
+- `tth tags delete`, `tth sequences delete` and `tth views delete` need `--yes` without a terminal: pass it only when the user named that tag, sequence or view, or agreed.
 - Imports, enrichment, email or phone lookups, content lookups and searches use credits and don't ask. Searches have no `--all`: each `--cursor` page costs credits again.
 
 ## Rules
