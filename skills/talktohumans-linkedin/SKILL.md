@@ -58,7 +58,7 @@ Any other `/v1` route: `tth api <METHOD> /v1/... [--field k=v] [--input file] [-
 
 ## Output contract
 
-- stdout is data only: JSON when piped (always, for agents), a table in a terminal, `--json` forces JSON. A single page prints the API response unchanged (`data.pagination.next_cursor` → `--cursor`); `--all` prints one JSON array of every item.
+- stdout is data only: JSON when piped (always, for agents), a table in a terminal, `--json` forces JSON. A single page prints the API response unchanged (`data.pagination.next_cursor` → `--cursor`); `--all` prints the same shape with every page's items, so read `.data.<items>` either way.
 - stderr carries warnings and errors. Errors are JSON when piped: `{"code","message","hint"}`. Read sync and caveat warnings and tell the user when data may be incomplete.
 - Exit codes: `0` ok, `1` error, `2` usage (fix the command), `3` not found, `4` auth, plan or setup, `5` rate limited.
 - `tth tags delete` and `tth sequences delete` need `--yes` without a terminal: pass it only when the user named that tag or sequence, or agreed.
