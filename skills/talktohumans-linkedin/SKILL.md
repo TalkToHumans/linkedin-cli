@@ -62,7 +62,7 @@ Any other `/v1` route: `tth api <METHOD> /v1/... [--field k=v] [--input file] [-
 - stderr carries warnings and errors. Errors are JSON when piped: `{"code","message","hint"}`, plus `action_url` for plan, credit and payment errors: give the user that link. Read sync and caveat warnings and tell the user when data may be incomplete.
 - Exit codes: `0` ok, `1` error, `2` usage (fix the command), `3` not found, `4` auth, plan or setup, `5` rate limited.
 - `tth tags delete`, `tth sequences delete` and `tth views delete` need `--yes` without a terminal: pass it only when the user named that tag, sequence or view, or agreed.
-- Imports, enrichment, email or phone lookups, content lookups and searches use credits and don't ask. Searches have no `--all`: each `--cursor` page costs credits again.
+- Searches have no `--all`: read the next page with `--cursor` only when you need more results.
 
 ## Rules
 
