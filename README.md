@@ -13,6 +13,7 @@ Your agent reads your LinkedIn conversations, searches your network, enriches pr
 [![Release](https://img.shields.io/github/v/release/TalkToHumans/linkedin-cli?label=Release)](https://github.com/TalkToHumans/linkedin-cli/releases/latest)
 [![Agent skill](https://img.shields.io/badge/Agent%20skill-npx%20skills%20add-purple)](#set-up-your-ai-agent)
 [![Platforms](https://img.shields.io/badge/Platforms-macOS%20%7C%20Linux%20%7C%20Windows-black)](https://github.com/TalkToHumans/linkedin-cli/releases/latest)
+[![M8ven Score](https://m8ven.ai/badge/mcp/talktohumans-linkedin-cli-1atgen?v=b015582bf9419cb7b345d7c1f373d3a2)](https://m8ven.ai/mcp/talktohumans-linkedin-cli-1atgen?s=readme)
 
 ## Why this LinkedIn CLI is safer
 
