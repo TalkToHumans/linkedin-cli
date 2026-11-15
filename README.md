@@ -89,6 +89,9 @@ tth conversations list --account-id 42 --filters '[{"field":"conversation.reply_
 # Import profiles and wait for the result
 tth contacts import --account-id 42 --file leads.txt --wait
 
+# Find contacts by LinkedIn URL
+tth contacts list --account-id 42 --filters '[{"field":"member.linkedin_url","operator":"=","value":["https://www.linkedin.com/in/carina-x/"]}]'
+
 # Enrich and tag a contact
 tth contacts enrich --contact-id 123
 tth contacts update 123 --tag "Hot lead"
